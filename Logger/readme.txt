@@ -11,17 +11,21 @@ Tester files ( "gcc -o start main.c periodic.c") -lpthread to comple:
   --- lib.h --> Library containing timespec utils
   
  Infrastructure files:
-  --- cpu_stats.sh -> monitor and saves the cpu and temperature usage of cores 0 and 1 ( can be extended to multiple cores modifying the script).
-  --- logger.sh ->    creates the configuration before the logs ( creates folders , puts -1 in sched_rt_runtime , and performs an irq offload).
-                      After creating the configuration the script runs different tests( rebooting the computer from one to another).
-                      Each single test is performed running an empty task with two different. priorities (100 us and 1000 us) on core 1 and starting
-                      a stressor (with stress-ng) command on the non isolated core0 ( this can be changed).
-                      The stressors are:
-                      1- cache
-                      2- vm
-                      3- context
-                      4- load
-                      5- no stressors
-                      Each test runs for 30 mins.
-  --- offload.sh ->   takes the isolated mask and performs an offload of irqs to non-isolated cores.
-  --- 
+  --- cpu_stats_script.sh -> monitor and saves the cpu and temperature usage of cores 0 and 1 ( can be extended to multiple cores modifying the script).
+  --- logger.sh ->           creates the configuration before the logs ( creates folders , puts -1 in sched_rt_runtime , and performs an irq offload).
+                             After creating the configuration the script runs different tests( rebooting the computer from one to another).
+                             Each single test is performed running an empty task with two different. priorities (100 us and 1000 us) 
+                             on core 1 and starting a stressor (with stress-ng) command on the non isolated core0 ( this can be changed).
+                             The stressors are:
+                              1- cache
+                              2- vm
+                              3- context
+                              4- load
+                              5- no stressors
+                              Each test runs for 30 mins.
+                              After each test ends the file run_tests contains 1
+  --- offload.sh ->           takes the isolated mask and performs an offload of irqs to non-isolated cores.
+  --- run_tests ->            Contains 0 if tests can execute.
+  --- latency_tester.service->File used for creating a latency_tester service with systemctl in order to start the tests automatically on each reboot
+                              without starting them manually.
+                              
