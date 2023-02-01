@@ -1,0 +1,10 @@
+[Unit]
+Description=your description
+
+[Service]
+WorkingDirectory=/home/emmo/Scrivania/Logger/
+ExecStart=/home/emmo/Scrivania/Logger/new_logger_test.sh
+User=root
+Group=root
+[Install]
+WantedBy=multi-user.target
