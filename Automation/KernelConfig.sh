@@ -47,6 +47,11 @@ then
 	((count++))
 	echo CONFIG_CPU_ISOLATION=n
 fi
+if !(cat $path_kernel_config | grep -q CONFIG_CPU_IDLE_GOV_MENU=y)
+then
+	((count++))
+	echo CONFIG_CPU_ISOLATION=n
+fi
 if ((count > 0))
 then
 	echo Recompile the kernel $(uname -r) with above flags enabled
@@ -126,6 +131,6 @@ then
 else
 	if ((flag == 3))
 	then
-		sudo ./offload.sh
+		sudo ./runtimeConfig.sh
 	fi
 fi
