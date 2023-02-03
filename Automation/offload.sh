@@ -1,7 +1,11 @@
 #!/bin/bash
 isolated=$(cat /proc/cmdline | sed -e 's/^.*isolcpus=//' -e 's/ .*$//') # thanks to SO
 nohz_full=$(cat /proc/cmdline | sed -e 's/^.*nohz_full=//' -e 's/ .*$//')
-
+if [[ $isolated == $nohz_full ]]
+then
+	echo " Isolated cores != Tickless cores "
+fi
+		
 cpu=0
 cmask=''
 while ((cpu < $(nproc --all)))
