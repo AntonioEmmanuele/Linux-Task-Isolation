@@ -50,7 +50,7 @@ fi
 if !(cat $path_kernel_config | grep -q CONFIG_CPU_IDLE_GOV_MENU=y)
 then
 	((count++))
-	echo CONFIG_CPU_ISOLATION=n
+	echo CONFIG_CPU_IDLE_GOV_MENU=n
 fi
 if ((count > 0))
 then
