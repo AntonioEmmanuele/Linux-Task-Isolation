@@ -15,7 +15,7 @@ This folder contains the script used for checking if the current kernel configur
     1-  run KernelConfig
     2-  In case the kernel config is ok then set the isolated cpus, this step will make an automatic reboot since the grub file is changed .
         ( in case the user doesn't change the configuration the offload is performed in this step)
-    3-  After the reboot run offload.sh 
+    3-  After the reboot run runtimeConfig.sh 
     4-  put the user task in job_body function in main.c in FrameworkOnlineAcceptancy and then compile it with  gcc -o start main.c periodic.c -lpthread
     5-  Run ./start "period in us"
     6-  Return to step 4 for another task, the framework will automatically find the first available isolated core
