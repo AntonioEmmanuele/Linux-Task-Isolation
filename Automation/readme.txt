@@ -5,9 +5,10 @@ This folder contains the script used for checking if the current kernel configur
                                 In case no isolated cpu is available the task is not spawned.
                                 This is done mantaining a bitmask of the isolated cpus in a shared memory area.
     -offload.sh:                Takes the mask of the isolated cores in input and performs an offload of irqs to non isolated cores.
+    -runtimeConfig.sh           Performs and irq offload and disables rt throttlign
     -KernelConfig.sh:           Checks if the current kernel config is ok for running tasks in isolation tickless mode, sets
-                                the bootloader booting the kernel with the isolated cpus given by the user in input  and  performs 
-                                an offload of irqs in case the grub is not updated.
+                                the bootloader booting the kernel with the isolated cpus given by the user in input  and  calls 
+                                runtimeConfig.sh in case the grub is not updated.
     
     So in order to run tasks in isol mode:
     
